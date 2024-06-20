@@ -10,7 +10,7 @@ class model_user(BaseModel):
     id:str
     usuario:str
     contrasena:str
-    created_at:datetime = datetime.now
+    created_at:datetime = datetime.now()
     estatus:bool=False
     
     
@@ -26,6 +26,7 @@ def get_usuarios():
 
 @user.post('/users')
 
-def save_usuarios(users:model_user):
-    users.append
+def save_usuarios(insert_users:model_user):
+    users.append(insert_users)
+    #print(insert_users)
     return "Datos Guardados"
