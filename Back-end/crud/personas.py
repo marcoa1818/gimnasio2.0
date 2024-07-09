@@ -4,23 +4,33 @@ from sqlalchemy.orm import Session
 import models, schemas
 
 def get_persona(db: Session, id: int):
-    return db.query(models.personas.Persona).filter(models.personas.Persona.id == id).first()
+    return db.query(models.personas.Persona).filter(models.personas.Persona.ID == id).first()
 
 def get_persona_by_id(db: Session, nombre: str):
-    return db.query(models.personas.Persona).filter(models.personas.Persona.nombre == nombre).first()
+    return db.query(models.personas.Persona).filter(models.personas.Persona.Nombre == nombre).first()
 
 def get_personas(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.personas.Persona).offset(skip).limit(limit).all()
 
 def create_personas(db: Session, nom: schemas.personas.PersonaCreate):
-    db_user = models.personas.Persona(titulo_cortesia=nom.titulo_cortesia, nombre=nom.nombre,primer_apellido=nom.primer_apellido, segundo_apellido=nom.segundo_apellido,fecha_nacimiento=nom.fecha_nacimiento,  fotografia=nom.fotografia,  genero=nom.genero,  tipo_sangre=nom.tipo_sangre, created_at=nom.created_at, estatus=nom.estatus, fecha_registro=nom.fecha_registro, fecha_actualizacion=nom.fecha_actualizacion )
+    db_user = models.personas.Persona(Titulo_Cortesia=nom.Titulo_Cortesia,
+                                      Nombre=nom.Nombre,
+                                      Primer_Apellido=nom.Primer_Apellido, 
+                                      Segundo_Apellido=nom.Segundo_Apellido,
+                                      Fecha_Nacimiento=nom.Fecha_Nacimiento,  
+                                      Fotografia=nom.Fotografia,  
+                                      Genero=nom.Genero,  
+                                      Tipo_Sangre=nom.Tipo_Sangre,  
+                                      Estatus=nom.Estatus, 
+                                      Fecha_Registro=nom.Fecha_Registro, 
+                                      Fecha_Actualizacion=nom.Fecha_Actualizacion )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
 
 def update_personas(db: Session, id: int, person: schemas.personas.PersonaUpdate):
-    db_user = db.query(models.personas.Persona).filter(models.personas.Persona.id == id).first()
+    db_user = db.query(models.personas.Persona).filter(models.personas.Persona.ID == id).first()
     if db_user:
         for var, value in vars(person).items():
             setattr(db_user, var, value) if value else None
@@ -29,7 +39,7 @@ def update_personas(db: Session, id: int, person: schemas.personas.PersonaUpdate
     return db_user
 
 def delete_personas(db: Session, id: int):
-    db_user = db.query(models.personas.Persona).filter(models.personas.Persona.id == id).first()
+    db_user = db.query(models.personas.Persona).filter(models.personas.Persona.ID == id).first()
     if db_user:
         db.delete(db_user)
         db.commit()

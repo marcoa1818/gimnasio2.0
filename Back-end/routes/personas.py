@@ -33,7 +33,7 @@ def read_persona(id: int, db: Session = Depends(get_db)):
 
 @persona.post("/persona/", response_model=schemas.personas.Persona, tags=["Personas"])
 def create_persona(persona: schemas.personas.PersonaCreate, db: Session = Depends(get_db)):
-    db_user = crud.personas.get_persona_by_id(db, nombre=persona.nombre)
+    db_user = crud.personas.get_persona_by_id(db, nombre=persona.Nombre)
     if db_user:
         raise HTTPException(status_code=400, detail="Persona existente intenta nuevamente")
     return crud.personas.create_personas(db=db, nom=persona)
