@@ -20,7 +20,7 @@ def get_db():
         db.close()
 
 @persona.get("/personas/", response_model=List[schemas.personas.Persona], tags=["Personas"])
-def read_persnas(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_personas(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     db_users= crud.personas.get_personas(db=db, skip=skip, limit=limit)
     return db_users
 
