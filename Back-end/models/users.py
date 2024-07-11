@@ -5,26 +5,14 @@ from config.db import Base
 import enum
 import models.personas
 
-
-
-class MyEstatus(enum.Enum):
-    Activo = "Activo"
-    Inactivo = "Inactivo"
-    Bloqueado = "Bloqueado"
-    Suspendido = "Suspendido"
-
-
-
 class User(Base):
     __tablename__ = "tbb_users"
 
-    ID = Column(Integer, primary_key=True, index=True)
-    Persona_ID = Column(Integer, ForeignKey("tbb_personas.ID"))
-    Nombre_Usuario = Column(String(255))
-    Correo_Electronico = Column(String(100))
-    Contrasena = Column(String(40))
-    Numero_Telefonico_Movil = Column(String(20))
-    Estatus = Column( Enum(MyEstatus))
+    id = Column(Integer, primary_key=True, index=True)
+    usuario = Column(String(255))
+    password = Column(LONGTEXT)
+    estatus = Column(Boolean, default=False)
+    Id_persona = Column(Integer)
     Fecha_Registro = Column(DateTime)
     Fecha_Actualizacion = Column(DateTime)
     

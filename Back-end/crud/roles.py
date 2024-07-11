@@ -14,9 +14,9 @@ def get_roles(db: Session, skip: int = 0, limit: int = 10):
 
 def create_rol(db: Session, rol: schemas.roles.RolCreate):
     db_user = models.roles.Rol(
-                                Nombre = rol.Nombre, 
-                                Descripcion = rol.Descripcion,
-                                #Contrasena = rol.Contrasena, 
+                                Nombre = rol.Nombre,
+                                Descripcion=rol.Descripcion, 
+                                #Contrasena=rol.Contrasena, 
                                 Estatus=rol.Estatus, 
                                 Fecha_Registro=rol.Fecha_Registro,
                                 Fecha_Actualizacion=rol.Fecha_Actualizacion

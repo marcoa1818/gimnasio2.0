@@ -32,7 +32,7 @@ def read_user(id: int, db: Session = Depends(get_db)):
 
 @user.post("/users/", response_model=schemas.users.User, tags=["Usuarios"])
 def create_user(user: schemas.users.UserCreate, db: Session = Depends(get_db)):
-    db_user = crud.users.get_user_by_usuario(db, usuario=user.Nombre_Usuario)
+    db_user = crud.users.get_user_by_usuario(db, usuario=user.usuario)
     if db_user:
         raise HTTPException(status_code=400, detail="Usuario existente intenta nuevamente")
     return crud.users.create_user(db=db, user=user)

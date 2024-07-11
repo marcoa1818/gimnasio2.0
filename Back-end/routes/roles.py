@@ -19,14 +19,14 @@ def get_db():
     finally:
         db.close()
 
-@rol.get("/roles/", response_model=List[schemas.roles.Rol], tags=["Roles"])
+@rol.get("/rol/", response_model=List[schemas.roles.Rol], tags=["Roles"])
 def read_roles(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     db_users= crud.roles.get_roles(db=db, skip=skip, limit=limit)
     return db_users
 
 @rol.post("/rol/{id}", response_model=schemas.roles.Rol, tags=["Roles"])
 def read_roles(id: int, db: Session = Depends(get_db)):
-    db_user= crud.roles.get_roles(db=db, id=id)
+    db_user= crud.roles.get_rol(db=db, id=id)
     if db_user is None:
         raise HTTPException(status_code=404, detail="Rol not found")
     return db_user

@@ -19,14 +19,8 @@ class UserUpdate(UserBase):
     pass
 
 class User(UserBase):
-    ID: int
-    Persona_ID: int
-    #owner_id: int clave foranea
+    id: int
+
     class Config:
         orm_mode = True
-class UserLogin(BaseModel):
-    Nombre_Usuario: str
-    Correo_celectronico : str
-    Contrasena :str
-    Numero_Telefonico_Movil : str
 
