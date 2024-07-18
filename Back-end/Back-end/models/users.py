@@ -6,13 +6,11 @@ import models.personas
 import enum
 
 
-
 class MyEstatus(enum.Enum):
     Activo = "Activo"
     Inactivo = "Inactivo"
     Bloqueado = "Bloqueado"
     Suspendido = "Suspendido"
-
 
 
 class User(Base):
