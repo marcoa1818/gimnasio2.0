@@ -1,0 +1,3 @@
+[build]
+  command = "npm i"
+  command = "npm run dev"
